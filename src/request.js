@@ -37,6 +37,7 @@ const makeRequest = function postRequest(hostName, endpoint, methodName, data, t
             "content-type": methodName == "POST" ? "application/x-www-form-urlencoded" : "application/json",
             "authorization": token,
             "cache-control": "no-cache",
+            "X-EBAY-C-MARKETPLACE-ID":"EBAY-GB",
         }
     };
     return new Promise(function (resolve, reject) {
