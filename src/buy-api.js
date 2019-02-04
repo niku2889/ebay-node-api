@@ -1,5 +1,5 @@
 
-const makeString = require('make-string');
+
 const { makeRequest } = require('./request');
 
 const getItem = function (itemId) {
@@ -53,7 +53,7 @@ const searchItems = function (searchConfig) {
     queryParam = queryParam + (searchConfig.limit ? "&limit=" + searchConfig.limit : "");
     queryParam = queryParam + (searchConfig.sort ? "&sort=" + searchConfig.sort : "");
     if (searchConfig.fieldgroups != undefined) queryParam = queryParam + "&fieldgroups=" + searchConfig.fieldgroups;
-    if (searchConfig.filter != undefined) queryParam = queryParam + "&filter=" + encodeURIComponent(makeString(searchConfig.filter, { quotes: "no", braces: 'false' }));
+    if (searchConfig.filter != undefined) queryParam = queryParam + "&filter=" + searchConfig.filter;
     return new Promise((resolve, reject) => {
         makeRequest(this.options.baseUrl, `/buy/browse/v1/item_summary/search?${queryParam}`, 'GET', this.options.body, auth).then((result) => {
             resolve(result);
