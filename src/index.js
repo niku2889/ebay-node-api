@@ -3,7 +3,9 @@ const { getRequest, makeRequest, base64Encode } = require('./request');
 const { getItem,
     getItemByLegacyId,
     getItemByItemGroup,
-    searchItems } = require('./buy-api');
+    searchItems,
+    searchItemsUSA,
+    searchItemsGermany } = require('./buy-api');
 const { getDefaultCategoryTreeId,
     getCategoryTree,
     getCategorySubtree,
@@ -115,6 +117,8 @@ Ebay.prototype = {
     getItemByLegacyId,
     getItemByItemGroup,
     searchItems,
+    searchItemsUSA,
+    searchItemsGermany,
     getDefaultCategoryTreeId,
     getCategoryTree,
     getCategorySubtree,
