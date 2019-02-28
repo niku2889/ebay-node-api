@@ -37,7 +37,7 @@ const makeRequest = function postRequest(hostName, endpoint, methodName, data, t
             "content-type": methodName == "POST" ? "application/x-www-form-urlencoded" : "application/json",
             "authorization": token,
             "cache-control": "no-cache",
-            "X-EBAY-C-MARKETPLACE-ID":"EBAY-GB",
+            "X-EBAY-C-MARKETPLACE-ID": "EBAY-GB",
         }
     };
     return new Promise(function (resolve, reject) {
@@ -64,10 +64,85 @@ const makeRequest = function postRequest(hostName, endpoint, methodName, data, t
     })
 }
 
+const makeRequestUSA = function postRequest(hostName, endpoint, methodName, data, token) {
+    methodName == "POST" ? dataString = qs.stringify(data) : '';
+    // console.log(endpoint);
+    const options = {
+        "hostname": hostName,
+        "path": endpoint,
+        "method": methodName || 'GET',
+        "headers": {
+            "content-type": methodName == "POST" ? "application/x-www-form-urlencoded" : "application/json",
+            "authorization": token,
+            "cache-control": "no-cache",
+            "X-EBAY-C-MARKETPLACE-ID": "EBAY-US",
+        }
+    };
+    return new Promise(function (resolve, reject) {
+        const req = httpRequest.request(options, res => {
+            res.setEncoding("utf8");
+            let body = "";
+            res.on("data", data => {
+                body += data;
+                //console.log(body);
+            });
+            res.on("end", () => {
+                resolve(body);
+
+            });
+            res.on("error", (error) => {
+                reject(error);
+
+            });
+        });
+        //console.log("request " + dataString);
+        if (methodName == "POST") req.write(dataString)
+        req.end();
+
+    })
+}
+
+const makeRequestGermany = function postRequest(hostName, endpoint, methodName, data, token) {
+    methodName == "POST" ? dataString = qs.stringify(data) : '';
+    // console.log(endpoint);
+    const options = {
+        "hostname": hostName,
+        "path": endpoint,
+        "method": methodName || 'GET',
+        "headers": {
+            "content-type": methodName == "POST" ? "application/x-www-form-urlencoded" : "application/json",
+            "authorization": token,
+            "cache-control": "no-cache",
+            "X-EBAY-C-MARKETPLACE-ID": "EBAY-DE",
+        }
+    };
+    return new Promise(function (resolve, reject) {
+        const req = httpRequest.request(options, res => {
+            res.setEncoding("utf8");
+            let body = "";
+            res.on("data", data => {
+                body += data;
+                //console.log(body);
+            });
+            res.on("end", () => {
+                resolve(body);
+
+            });
+            res.on("error", (error) => {
+                reject(error);
+
+            });
+        });
+        //console.log("request " + dataString);
+        if (methodName == "POST") req.write(dataString)
+        req.end();
+
+    })
+}
 
 const base64Encode = (encodeData) => {
     const buff = new Buffer(encodeData);
     return buff.toString('base64');
 }
 
-module.exports = { getRequest, makeRequest, base64Encode };
+module.exports = { getRequest, makeRequest, makeRequestUSA, makeRequestGermany, base64Encode };
