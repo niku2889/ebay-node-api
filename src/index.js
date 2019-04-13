@@ -40,7 +40,7 @@ function Ebay(options) {
         options.baseSvcUrl = BASE_SANDBX_SVC_URL;
     }
     this.options = options;
-    this.options.globalID = options.countryCode || "EBAY-US";
+    this.options.globalID = options.countryCode || "EBAY-GB";
 }
 
 Ebay.prototype = {
@@ -50,6 +50,7 @@ Ebay.prototype = {
         this.options.name = keyword;
         this.options.operationName = "findItemsByKeywords";
         this.options.param = "keywords";
+        this.options.limit = 1;
         const url = urlObject.buildSearchUrl(this.options);
         return getRequest(url).then((data) => {
             return JSON.parse(data)["findItemsByKeywordsResponse"];
