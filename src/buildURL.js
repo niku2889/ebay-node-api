@@ -13,7 +13,6 @@ const buildURL = {
    * @private
    */
     buildSearchUrl(options) {
-        console.log(options);
         let base_url = `http://${options.baseSvcUrl}/services/search/FindingService/v1?`;
         base_url += "SECURITY-APPNAME=" + options.clientID;
         base_url += "&OPERATION-NAME=" + options.operationName;
