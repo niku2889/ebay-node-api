@@ -34,6 +34,7 @@ function Ebay(options) {
     if (!options.env) options.env = PROD_ENV;
     options.baseUrl = PROD_BASE_URL;
     options.baseSvcUrl = BASE_SVC_URL;
+    
     // handle sandbox env.
     if (options.env === SANDBOX_ENV) {
         options.baseUrl = SANDBOX_BASE_URL;
