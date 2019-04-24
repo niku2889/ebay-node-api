@@ -41,7 +41,7 @@ function Ebay(options) {
         options.baseSvcUrl = BASE_SANDBX_SVC_URL;
     }
     this.options = options;
-    this.options.globalID = options.countryCode || "EBAY-GB";
+    this.options.globalID = options.countryCode || "EBAY-US";
 }
 
 Ebay.prototype = {
