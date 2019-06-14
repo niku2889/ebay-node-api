@@ -21,6 +21,7 @@ const buildURL = {
         base_url += options.limit ? "&paginationInput.entriesPerPage=" + options.limit : '';
         base_url += options.globalID ? "&GLOBAL-ID=" + options.globalID : '';
         base_url += "&affiliate.trackingId=5338430173&affiliate.networkId=9&outputSelector(0)=SellerInfo";
+        base_url += options.seller ? "&itemFilter(0).name=Seller&itemFilter(0).value(0)=" + options.seller : '';
         base_url += options.pageNumber ? "&paginationInput.pageNumber=" + options.pageNumber: '';
 
         return base_url;
